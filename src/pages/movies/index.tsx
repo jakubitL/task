@@ -1,11 +1,22 @@
+import React, { useEffect, useState } from 'react';
 import type { NextPage } from "next";
 import Link from "next/link";
 import styles from "../../styles/Layout.module.css";
 import { useMovies, getUrlID } from "../../actions";
+import type { Movie, Character } from "../../types";
 
 const Movies: NextPage = () => {
-  const movies = useMovies();
+  const [movies, setMovies] = useState<Movie[] | undefined>(undefined);
+  const { getMovies } = useMovies();
 
+  useEffect(() => {
+    (async () => {
+      const movies = await getMovies();
+      setMovies(movies);
+    })();
+  }, [getMovies]);
+
+  // const movies = useMovies();
   return (
     <div className={styles.container}>
       <h3>Filmy</h3>
@@ -27,5 +38,6 @@ const Movies: NextPage = () => {
     </div>
   );
 };
+
 
 export default Movies;
