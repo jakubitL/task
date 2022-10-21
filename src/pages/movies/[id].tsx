@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 import { useMovies, useCharacters, getUrlID } from "../../actions";
 import styles from "../../styles/Layout.module.css";
 import Link from "next/link";
-import type { Character } from "../../types";
+import type { Movie, Character } from "../../types";
 
 const Movie: NextPage = () => {
   const router = useRouter();
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState<Movie | undefined>(undefined);
   const { getMovieById } = useMovies();
 
   //todelete
@@ -18,7 +18,6 @@ const Movie: NextPage = () => {
     (async () => {
       const characters = await getCharactes();
       setCharacters(characters);
-      console.log('req')
     })();
   }, []);
   //todelete
@@ -32,15 +31,16 @@ const Movie: NextPage = () => {
     })();
   }, [getMovieById, router.query.id]);
 
-  const getCharacterName = (character) => {
+  const getCharacterName = (characterUrl: string) => {
     if (characters) {
-      return characters.find(char => char.url === character) ? characters.find(char => char.url === character).name : '';
+      const person = characters.find(char => char.url === characterUrl);
+      return person ? person.name : '';
     }
   };
   return (
     <div className={styles.container}>
-      <h3>Film: {movie.title}</h3>
-      <p>{movie.opening_crawl}</p>
+      <h3>Film: {movie ? movie.title : ''}</h3>
+      <p>{movie ? movie.opening_crawl : ''}</p>
       <ul>
         {movie && movie.characters && movie.characters.map((character, idx) => {
           return (
