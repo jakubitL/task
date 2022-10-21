@@ -82,7 +82,18 @@ export const useCharacters = () => {
       console.log(e);
     }
   }, []);
-return { getCharactes}
+
+  
+const getCharacterById =  useCallback(async (id: Number) => {
+  try {
+    const result = await api.get(`/people/${id}`);
+    return result.data;
+  } catch (e) {
+    console.log(e);
+  }
+}, [])
+
+return { getCharactes, getCharacterById}
 };
 
 export const useCharacter = () => {
