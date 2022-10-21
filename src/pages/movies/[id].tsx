@@ -1,37 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useMovies, getUrlID } from "../../actions";
+import { useMovies, useCharacters, getUrlID } from "../../actions";
 import styles from "../../styles/Layout.module.css";
 import Link from "next/link";
+import type { Character } from "../../types";
 
 const Movie: NextPage = () => {
   const router = useRouter();
   const [movie, setMovie] = useState([]);
   const { getMovieById } = useMovies();
 
+  //todelete
+  const [characters, setCharacters] = useState<Character[] | undefined>(undefined);
+  const { getCharactes } = useCharacters();
+  useEffect(() => {
+    (async () => {
+      const characters = await getCharactes();
+      setCharacters(characters);
+      console.log('req')
+    })();
+  }, []);
+  //todelete
   /**
    * TODO: zaimplementuj hook do pobierania filmu
    */
-   useEffect(() => {
+  useEffect(() => {
     (async () => {
       const movie = await getMovieById(router.query.id);
-      console.log(movie);
       setMovie(movie);
     })();
   }, [getMovieById, router.query.id]);
 
-
+  const getCharacterName = (character) => {
+    if (characters) {
+      return characters.find(char => char.url === character) ? characters.find(char => char.url === character).name : '';
+    }
+  };
   return (
     <div className={styles.container}>
-<h3>Film: {movie.title}</h3>
+      <h3>Film: {movie.title}</h3>
       <p>{movie.opening_crawl}</p>
       <ul>
         {movie && movie.characters && movie.characters.map((character, idx) => {
           return (
             <li key={idx}>
               <Link href={`/people/${getUrlID(character)}`}>
-                {character}
+                {getCharacterName(character) ? getCharacterName(character) : ''}
               </Link>
             </li>
           );

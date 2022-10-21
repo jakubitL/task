@@ -43,13 +43,12 @@ export const useMovies = () => {
   const getMovies =  useCallback(async () => {
     try {
       const result = await api.get('/films/');
-      console.log('aaa', result);
       return result.data.results;
     } catch (e) {
       console.log(e);
     }
   }, []);
-  
+
 const getMovieById =  useCallback(async (id: Number) => {
   try {
     const result = await api.get(`/films/${id}`);
@@ -65,6 +64,25 @@ export const useCharacters = () => {
   /**
    * TODO: ${endpoint}/people
    */
+   const getCharactes =  useCallback(async () => {
+    //pętla while nie jest optymalna, niestety api nie pozwala pobrać wszystkie postacie za jednym razem aby potem móc wykorzystywać ze store
+    try {
+      const characters = [];
+      let next = true;
+      let i = 1;
+      while (next) {
+      const result = await api.get(`/people/?page=${i}`);
+      characters.push(...result.data.results)
+      i++;
+      if(result.data.next === null)
+      next = false;
+      }
+      return characters;
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+return { getCharactes}
 };
 
 export const useCharacter = () => {

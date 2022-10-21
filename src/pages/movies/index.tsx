@@ -2,19 +2,29 @@ import React, { useEffect, useState } from 'react';
 import type { NextPage } from "next";
 import Link from "next/link";
 import styles from "../../styles/Layout.module.css";
-import { useMovies, getUrlID } from "../../actions";
+import { useMovies, useCharacters, getUrlID } from "../../actions";
 import type { Movie, Character } from "../../types";
 
 const Movies: NextPage = () => {
   const [movies, setMovies] = useState<Movie[] | undefined>(undefined);
+  // const [characters, setCharacters] = useState<Character[] | undefined>(undefined);
   const { getMovies } = useMovies();
+  // const { getCharactes } = useCharacters();
 
   useEffect(() => {
     (async () => {
+      console.log('films')
       const movies = await getMovies();
       setMovies(movies);
     })();
-  }, [getMovies]);
+  }, []);
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const characters = await getCharactes();
+  //     setCharacters(characters);
+  //   })();
+  // }, [getCharactes]);
 
   // const movies = useMovies();
   return (
