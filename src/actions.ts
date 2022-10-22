@@ -49,7 +49,7 @@ export const useMovies = () => {
     }
   }, []);
 
-const getMovieById =  useCallback(async (id: Number) => {
+const getMovieById =  useCallback(async (id: number) => {
   try {
     const result = await api.get(`/films/${id}`);
     return result.data;

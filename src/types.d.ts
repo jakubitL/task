@@ -8,6 +8,8 @@ export type Breadcrumb = {
 
 export type Review = {
   id: string;
+  film_id?: number; 
+  character_id?: number; 
   author_name: string;
   content: string;
 };
@@ -21,6 +23,7 @@ export type Movie = {
 };
 
 export type Character = {
+  hair_color: ReactNode;
   name: string;
   height: number;
   mass: string;

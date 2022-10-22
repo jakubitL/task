@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from "next";
+import type { RootState, AppDispatch } from '../../store/index'
 import { useRouter } from "next/router";
 import { useMovies, useCharacters, getUrlID } from "../../actions";
 import styles from "../../styles/Layout.module.css";
@@ -13,32 +14,52 @@ const Movie: NextPage = () => {
   const router = useRouter();
   const [movie, setMovie] = useState<Movie | undefined>(undefined);
   const { getMovieById } = useMovies();
-  const reviews = useSelector((state) => state.reviews);
-  const characters = useSelector((state) => state.characters);
-  const dispatch = useDispatch();
-
+  const { getCharactes } = useCharacters();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState,
+    formState: { errors, isSubmitSuccessful },
   } = useForm<Review>();
+  const characters = useSelector((state: RootState) => state.characters);
+  const dispatch = useDispatch();
+  const movieId = parseInt(router.query.id);
+  const reviews = useSelector((state: RootState) => state.reviews.filter(item => item.film_id === movieId));
+
   /**
    * TODO: zaimplementuj hook do pobierania filmu
    */
+   React.useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset();
+    }
+  }, [formState, reset]);
+  
   useEffect(() => {
     (async () => {
-      const movie = await getMovieById(router.query.id);
+      const movie = await getMovieById(movieId);
       setMovie(movie);
     })();
-  }, [getMovieById, router.query.id]);
+  }, [getMovieById, movieId]);
 
+  useEffect(() => {
+    (async () => {
+      // jeżeli w storze nie mamy pobranych postaci to zaciągnij na nowo
+      if (characters?.length === 0) {
+      const chars = await getCharactes();
+      dispatch(addCharacters(chars));
+      }
+    })();
+  }, []);
   const getCharacterName = (characterUrl: string) => {
     if (characters) {
-      const person = characters.find(char => char.url === characterUrl);
+      const person = characters.find((char: { url: string; }) => char.url === characterUrl);
       return person ? person.name : '';
     }
   };
   const handleAddReview = (data: Review) => {
+    data.film_id = movieId;
     dispatch(addReview(data));
   };
   return (
@@ -62,6 +83,16 @@ const Movie: NextPage = () => {
 
       <h3>Recenzje</h3>
       <ul>
+        {reviews && reviews.map((review, i) => {
+            /**
+             * TODO: fix key value
+             */
+            return (
+              <li key={i}>
+                  {review.author_name} + {review.content} 
+              </li>
+            );
+          })}
         {/**
          * TODO: dodaj listę recenzji dla zasobu, recenzje powinny być zapisane w stanie aplikacji
          */}

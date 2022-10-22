@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import type { NextPage } from "next";
 import Link from "next/link";
 import styles from "../../styles/Layout.module.css";
-import { useMovies, useCharacters, getUrlID } from "../../actions";
-import type { Movie, Character } from "../../types";
+import { useMovies, getUrlID } from "../../actions";
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState, AppDispatch } from '../../store/index'
+import { addMovies } from '../../store/index';
 
 
 const Movies: NextPage = () => {
-
-  const [movies, setMovies] = useState<Movie[] | undefined>(undefined);
+  const dispatch = useDispatch();
   const { getMovies } = useMovies();
+  const movies = useSelector((state: RootState) => state.movies);
 
   useEffect(() => {
     (async () => {
-      console.log('films')
+      if (movies?.length === 0) {
       const movies = await getMovies();
-      setMovies(movies);
+      dispatch(addMovies(movies));
+      }
     })();
   }, []);
 

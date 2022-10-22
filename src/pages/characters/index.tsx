@@ -4,18 +4,23 @@ import Link from "next/link";
 import styles from "../../styles/Layout.module.css";
 import { useCharacters, getUrlID } from "../../actions";
 import type { Character } from "../../types";
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState, AppDispatch } from '../../store/index'
+import { addCharacters } from '../../store/index';
 
 const Characters: NextPage = () => {
-  const [characters, setCharacters] = useState<Character[] | undefined>(undefined);
   const { getCharactes } = useCharacters();
-
+  const characters = useSelector((state: RootState) => state.characters);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      const characters = await getCharactes();
-      setCharacters(characters);
+      if (characters?.length === 0) {
+      const chars = await getCharactes();
+      dispatch(addCharacters(chars));
+      }
     })();
-  }, [getCharactes]);
+  }, []);
 
   return (
     <div className={styles.container}>

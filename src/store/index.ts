@@ -4,10 +4,28 @@ import { createSlice, configureStore } from '@reduxjs/toolkit';
 const initialReviewsState = [
   {
     id: uuid(),
-    author_name: 'Lorem ipsum',
-    content: 'Lorem ipsum dolor sit amet',
+    author_name: 'Jakub',
+    content: 'Film prawie tak dobry jak ta aplikacja',
+    film_id: 1
+  },
+  {
+    id: uuid(),
+    author_name: 'Jakub',
+    content: 'Lucky Luke lepszy',
+    character_id: 1
   },
 ];
+
+const moviesSlice = createSlice({
+  name: 'movies',
+  initialState: [],
+  reducers: {
+    addMovies(state, action)  {
+      return action.payload;
+    },
+  },
+});
+
 
 const reviewsSlice = createSlice({
   name: 'reviews',
@@ -34,10 +52,15 @@ const charactersSlice = createSlice({
 
 export const { addReview } = reviewsSlice.actions;
 export const { addCharacters } = charactersSlice.actions;
+export const { addMovies } = moviesSlice.actions;
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 
 export const store = configureStore({
   reducer: {
     reviews: reviewsSlice.reducer,
     characters: charactersSlice.reducer,
+    movies: moviesSlice.reducer,
   },
 });
