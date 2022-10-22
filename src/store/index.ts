@@ -1,6 +1,28 @@
 import { v4 as uuid } from 'uuid';
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
+export const titleNames = [
+  {
+    path: '/',
+    title: 'Strona główna'
+  },
+  {
+    path: '/movies',
+    title: 'Filmy'
+  },
+  {
+    path: '/characters',
+    title: 'Postacie'
+  },
+  {
+    path: '/characters/[id]',
+    title: 'Szczegóły postaci'
+  },
+  {
+    path: '/movies/[id]',
+    title: 'Szczegóły filmu'
+  }
+]
 const initialReviewsState = [
   {
     id: uuid(),
@@ -49,7 +71,6 @@ const charactersSlice = createSlice({
       },
     },
   });
-
 export const { addReview } = reviewsSlice.actions;
 export const { addCharacters } = charactersSlice.actions;
 export const { addMovies } = moviesSlice.actions;
