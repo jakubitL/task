@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import { useMovies, useCharacters, getUrlID } from "../../actions";
 import styles from "../../styles/Layout.module.css";
 import Link from "next/link";
-import type { Movie, Character } from "../../types";
-import { addReview } from '../../store/index';
+import type { Movie, Review } from "../../types";
+import { addReview, addCharacters } from '../../store/index';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -14,23 +14,14 @@ const Movie: NextPage = () => {
   const [movie, setMovie] = useState<Movie | undefined>(undefined);
   const { getMovieById } = useMovies();
   const reviews = useSelector((state) => state.reviews);
+  const characters = useSelector((state) => state.characters);
   const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  //todelete
-  const [characters, setCharacters] = useState<Character[] | undefined>(undefined);
-  const { getCharactes } = useCharacters();
-  useEffect(() => {
-    (async () => {
-      const characters = await getCharactes();
-      setCharacters(characters);
-    })();
-  }, []);
-  //todelete
+  } = useForm<Review>();
   /**
    * TODO: zaimplementuj hook do pobierania filmu
    */
@@ -47,8 +38,8 @@ const Movie: NextPage = () => {
       return person ? person.name : '';
     }
   };
-  const handleAddReview = ({ title, content }) => {
-    dispatch(addReview({ title, content }));
+  const handleAddReview = (data: Review) => {
+    dispatch(addReview(data));
   };
   return (
     <div className={styles.container}>
@@ -79,13 +70,13 @@ const Movie: NextPage = () => {
         {/**
          * TODO: zaimplementuj formularz dodawania recenzji
          */}
-           <label>Tytuł:</label>
-         <input {...register('title', { required: true })} type="text" name="title" id="title" />
+           <label>Autor:</label>
+         <input {...register('author_name', { required: true })} type="text" name="author_name" id="author_name" />
 
          <label>Content:</label>
          <input {...register('content', { required: true })} type="textarea" name="content" id="content" />
-         {errors.title && <span>Title is required</span>}
-        {errors.content && <span>Content is required</span>}
+         {errors.author_name && <span>Autor jest wymagany</span>}
+        {errors.content && <span>Treść jest wymagana</span>}
          <button type="submit">Dodaj</button>
       </form>
     </div>

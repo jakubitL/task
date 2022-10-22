@@ -6,6 +6,12 @@ export type Breadcrumb = {
   // TODO
 };
 
+export type Review = {
+  id: string;
+  author_name: string;
+  content: string;
+};
+
 export type Movie = {
   title: string;
   episode_id: number;

@@ -5,11 +5,11 @@ import styles from "../../styles/Layout.module.css";
 import { useMovies, useCharacters, getUrlID } from "../../actions";
 import type { Movie, Character } from "../../types";
 
+
 const Movies: NextPage = () => {
+
   const [movies, setMovies] = useState<Movie[] | undefined>(undefined);
-  // const [characters, setCharacters] = useState<Character[] | undefined>(undefined);
   const { getMovies } = useMovies();
-  // const { getCharactes } = useCharacters();
 
   useEffect(() => {
     (async () => {
@@ -19,14 +19,6 @@ const Movies: NextPage = () => {
     })();
   }, []);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const characters = await getCharactes();
-  //     setCharacters(characters);
-  //   })();
-  // }, [getCharactes]);
-
-  // const movies = useMovies();
   return (
     <div className={styles.container}>
       <h3>Filmy</h3>
