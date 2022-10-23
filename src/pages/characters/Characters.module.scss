@@ -7,13 +7,16 @@
     font-size: 34px;
     color: white;
 }
+
 .titles {
     list-style-type: circle;
     font-size: 18px;
+
     &:hover {
-      color: #998f37;
+        color: #998f37;
     }
 }
+
 .listContainer {
     list-style-type: none;
     display: flex;
@@ -53,15 +56,18 @@
     align-items: flex-start;
 
 }
+
 .formWrapper {
     display: flex;
     flex-direction: column;
     width: 80%;
 }
+
 .formLabel {
     font-weight: bold;
     font-size: 12px;
 }
+
 .formInput {
     padding: 10px 12px;
     border: 2px solid #ffe91f;
@@ -70,10 +76,10 @@
     border-radius: 15px;
     font-size: 12px;
     resize: none;
-  
+
     &:focus {
-      outline: none;
-      box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.3);
+        outline: none;
+        box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.3);
     }
 }
 
@@ -85,21 +91,24 @@
     box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
     border-radius: 20px;
     resize: none;
-  
+
     &:focus {
-      outline: none;
-      box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.3);
+        outline: none;
+        box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.3);
     }
 }
+
 .formSubmit {
     width: 150px;
     margin-top: 15px;
 }
+
 .reviewsWrapper {
-display: flex;
-flex-direction: column;
-width: 80%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
 }
+
 .review {
     border: 3px solid #ffe91f;
     box-sizing: border-box;
@@ -110,6 +119,7 @@ width: 80%;
     width: 100%;
     padding: 10px;
 }
+
 .reviewAutor {
     font-weight: bold;
 }

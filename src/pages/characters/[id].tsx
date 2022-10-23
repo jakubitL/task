@@ -7,7 +7,7 @@ import type { RootState } from '../../store/index'
 import type { Review } from "../../types/types";
 import { useRouter } from "next/router";
 import { useCharacters } from "../../api/api";
-import styles from "../characters/Characters.module.scss";
+import styles from "../characters/characters.module.scss";
 import { addReview } from '../../store/index';
 
 const Character: NextPage = () => {
@@ -24,7 +24,7 @@ const Character: NextPage = () => {
   const { getCharacterById } = useCharacters();
   const characterId = parseInt(router.query.id);
   const reviews = useSelector((state: RootState) => state.reviews.filter(item => item.character_id === characterId));
-  React.useEffect(() => {
+  useEffect(() => {
     if (formState.isSubmitSuccessful) {
       reset();
     }
@@ -67,7 +67,7 @@ const Character: NextPage = () => {
             return (
               <div className={styles.review}>
                 <p className={styles.reviewAutor} key={i}>
-                Autor: {review.author_name}
+                  Autor: {review.author_name}
                 </p>
                 <p key={i}>
                   {review.content}

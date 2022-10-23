@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import type { Character } from "../../types/types"
 import type { RootState, AppDispatch } from '../../store/index'
 import Link from "next/link";
-import styles from "./Characters.module.scss";
+import styles from "./characters.module.scss";
 import { useCharacters } from "../../api/api";
 import { getUrlID } from "../../helpers/helpers"
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,8 +17,8 @@ const Characters: NextPage = () => {
   useEffect(() => {
     (async () => {
       if (characters?.length === 0) {
-      const chars = await getCharactes();
-      dispatch(addCharacters(chars));
+        const chars = await getCharactes();
+        dispatch(addCharacters(chars));
       }
     })();
   }, []);
@@ -32,7 +32,7 @@ const Characters: NextPage = () => {
             return (
               <li key={i}>
                 <Link href={`/characters/${getUrlID(character.url)}`}>
-                <button className={styles.listItem}>{character.name}</button>
+                  <button className={styles.listItem}>{character.name}</button>
                 </Link>
               </li>
             );

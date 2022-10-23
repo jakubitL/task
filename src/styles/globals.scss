@@ -16,10 +16,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
 .content {
   background: rgba(1, 1, 1, 0.5);
   height: 100vh;
 }
+
 .heading {
   font-size: 74px;
   display: flex;
@@ -38,11 +40,12 @@ button {
   font-size: 18px;
   padding: 15px;
   border: none;
+
   &:hover {
-      cursor: pointer;
-      background-color: #998f37;
-      color: white;
-      border: none;
+    cursor: pointer;
+    background-color: #998f37;
+    color: white;
+    border: none;
 
   }
 }

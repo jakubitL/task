@@ -8,7 +8,7 @@ import type { RootState, AppDispatch } from '../../store/index'
 import type { Movie, Review, Character } from "../../types/types";
 import { useMovies, useCharacters } from "../../api/api";
 import { getUrlID } from "../../helpers/helpers"
-import styles from "../movies/Movies.module.scss";
+import styles from "../movies/movies.module.scss";
 import { addReview, addCharacters } from '../../store/index';
 
 const Movie: NextPage = () => {
@@ -28,7 +28,7 @@ const Movie: NextPage = () => {
   const movieId: number = parseInt(router.query.id);
   const reviews: Review[] = useSelector((state: RootState) => state.reviews.filter(item => item.film_id === movieId));
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (formState.isSubmitSuccessful) {
       reset();
     }

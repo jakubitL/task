@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { NextPage } from "next";
 import type { Movie } from "../../types/types"
 import type { RootState, AppDispatch } from '../../store/index'
-import styles from "./Movies.module.scss";
+import styles from "./movies.module.scss";
 import { useMovies } from "../../api/api";
 import { getUrlID } from "../../helpers/helpers"
 import { addMovies } from '../../store/index';
@@ -17,8 +17,8 @@ const Movies: NextPage = () => {
   useEffect(() => {
     (async () => {
       if (movies?.length === 0) {
-      const movies = await getMovies();
-      dispatch(addMovies(movies));
+        const movies = await getMovies();
+        dispatch(addMovies(movies));
       }
     })();
   }, []);
