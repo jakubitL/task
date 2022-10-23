@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
 import type { NextPage } from "next";
-import type { Character } from "../../types";
+import type { Character } from "../../types/types";
 import type { RootState } from '../../store/index'
-import type { Review } from "../../types";
+import type { Review } from "../../types/types";
 import { useRouter } from "next/router";
 import { useCharacters } from "../../api/api";
 import styles from "../../styles/Layout.module.css";

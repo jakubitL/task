@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+.header {
+    font-size: 28px;
+    color: #476C9B;
+}
+.listContainer {
+    list-style-type: none;
+
+}
+.listItem {
+    font-size: 14px;
+    margin-bottom: 10px;
+    background-color: #DE8F6E;
+    &:hover {
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding: 10px;
+    }
+}

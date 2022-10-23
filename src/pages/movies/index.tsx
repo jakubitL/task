@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import Link from "next/link";
 import type { NextPage } from "next";
-import type { Movie } from "../../types"
+import type { Movie } from "../../types/types"
 import type { RootState, AppDispatch } from '../../store/index'
-import styles from "../../styles/Layout.module.css";
+import styles from "./Movies.module.scss";
 import { useMovies } from "../../api/api";
 import { getUrlID } from "../../helpers/helpers"
 import { addMovies } from '../../store/index';
@@ -25,14 +25,14 @@ const Movies: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <h3>Filmy</h3>
-      <ul>
+      <h3 className={styles.header}>Filmy</h3>
+      <ul className={styles.listContainer}>
         {movies &&
           movies.map((movie, i) => {
             return (
               <li key={i}>
                 <Link href={`/movies/${getUrlID(movie.url)}`}>
-                  {movie.title}
+                  <button className={styles.listItem}>{movie.title}</button>
                 </Link>
               </li>
             );

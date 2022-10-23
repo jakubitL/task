@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import { createSlice, configureStore } from '@reduxjs/toolkit';
-import type { Breadcrumb } from "../types";
+import type { Breadcrumb } from "../types/types";
 
 export const breadcrumbsNames: Breadcrumb[] = [
   {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from "next";
-import type { Character } from "../../types"
+import type { Character } from "../../types/types"
 import type { RootState, AppDispatch } from '../../store/index'
 import Link from "next/link";
 import styles from "../../styles/Layout.module.css";

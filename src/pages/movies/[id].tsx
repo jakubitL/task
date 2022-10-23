@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import Link from "next/link";
 import type { NextPage } from "next";
 import type { RootState, AppDispatch } from '../../store/index'
-import type { Movie, Review, Character} from "../../types";
+import type { Movie, Review, Character} from "../../types/types";
 import { useMovies, useCharacters } from "../../api/api";
 import { getUrlID } from "../../helpers/helpers"
 import styles from "../../styles/Layout.module.css";

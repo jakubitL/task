@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Link from "next/link";
 import { useRouter } from 'next/router'
-import type { Breadcrumb } from "../../types";
-import layout from "../../styles/Layout.module.css";
+import type { Breadcrumb } from "../../types/types";
 import { breadcrumbsNames } from '../../store/index'
+import styles from "./Breadcrumbs.module.scss";
 
 const Breadcrumbs: React.FC = () => {
   const router = useRouter()
@@ -36,7 +36,7 @@ const Breadcrumbs: React.FC = () => {
   };
 
   return (
-    <ul className={layout.breadcrumbs}>
+    <ul className={styles.breadcrumbs}>
       <li>
         <Link href="/">Strona główna</Link>
       </li>
