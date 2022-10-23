@@ -1,24 +1,38 @@
-import type { NextPage } from "next";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import Link from "next/link";
-import styles from "../../styles/Layout.module.css";
-import { useMovies, getUrlID } from "../../actions";
+import type { NextPage } from "next";
+import type { Movie } from "../../types/types"
+import type { RootState, AppDispatch } from '../../store/index'
+import styles from "./Movies.module.scss";
+import { useMovies } from "../../api/api";
+import { getUrlID } from "../../helpers/helpers"
+import { addMovies } from '../../store/index';
 
 const Movies: NextPage = () => {
-  const movies = useMovies();
+  const dispatch: AppDispatch = useDispatch();
+  const { getMovies } = useMovies();
+  const movies: Movie[] = useSelector((state: RootState) => state.movies);
+
+  useEffect(() => {
+    (async () => {
+      if (movies?.length === 0) {
+      const movies = await getMovies();
+      dispatch(addMovies(movies));
+      }
+    })();
+  }, []);
 
   return (
     <div className={styles.container}>
-      <h3>Filmy</h3>
-      <ul>
+      <h3 className={styles.header}>Filmy</h3>
+      <ul className={styles.listContainer}>
         {movies &&
           movies.map((movie, i) => {
-            /**
-             * TODO: fix key value
-             */
             return (
               <li key={i}>
                 <Link href={`/movies/${getUrlID(movie.url)}`}>
-                  {movie.title}
+                  <button className={styles.listItem}>{movie.title}</button>
                 </Link>
               </li>
             );
@@ -27,5 +41,6 @@ const Movies: NextPage = () => {
     </div>
   );
 };
+
 
 export default Movies;

@@ -1,0 +1,115 @@
+.container {
+    padding: 0;
+    height: 100%;
+}
+
+.header {
+    font-size: 34px;
+    color: white;
+}
+.titles {
+    list-style-type: circle;
+    font-size: 18px;
+    &:hover {
+      color: #998f37;
+    }
+}
+.listContainer {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+
+.listItem {
+    margin: 20px;
+
+    &:hover {
+        margin: 20px;
+    }
+}
+
+.detailsContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 100px;
+    padding: 30px;
+
+}
+
+.rightWrapper {
+    padding: 40px;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+.formLabel {
+    font-weight: bold;
+    font-size: 12px;
+}
+.formInput {
+    padding: 10px 12px;
+    border: 2px solid #ffe91f;
+    box-sizing: border-box;
+    box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
+    border-radius: 15px;
+    font-size: 12px;
+    resize: none;
+  
+    &:focus {
+      outline: none;
+      box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.3);
+    }
+}
+
+.formInputTextarea {
+    padding: 10px 12px;
+    height: 100px;
+    border: 1px solid #ffe91f;
+    box-sizing: border-box;
+    box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
+    border-radius: 20px;
+    resize: none;
+  
+    &:focus {
+      outline: none;
+      box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.3);
+    }
+}
+.formSubmit {
+    width: 150px;
+    margin-top: 15px;
+}
+.reviewsWrapper {
+display: flex;
+flex-direction: column;
+width: 80%;
+}
+.review {
+    border: 3px solid #ffe91f;
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px;
+}
+.reviewAutor {
+    font-weight: bold;
+}

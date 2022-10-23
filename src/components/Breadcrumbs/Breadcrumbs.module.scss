@@ -1,0 +1,19 @@
+.breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #ffe91f;
+    color: white;
+  }
+  
+  .breadcrumbs li::after {
+    content: "-";
+    margin: 0 1rem;
+  }
+  
+  .breadcrumbs li:last-child::after {
+    display: none;
+  }
+  
