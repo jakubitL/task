@@ -1,3 +1,13 @@
+## Informacje o wykonaniu
+
+```
+Obsłużono wszystkie komentarze pozostawione jako "TODO". Do zarządzania globalnym stanem aplikacji wykorzystano redux (redux-toolkit). Do komunikacji z API wykorzystano axiosa. 
+
+Aplikacja działa poprawnie, jednak brakuje kilku elementów, jak na przykład wydzielenie części kodu do osobnych komponentów (sekcja recenzji) czy też wykorzystanie styled components.
+
+Łączny czas pracy to około 20h. Dłuższy czas wykonania oraz niektóre zastosowane rozwiązania wynikają z mniejszego doświadczenia w React/Next (doświadczenie głównie we Vue).
+```
+
 ## Uruchomienie
 
 ```
