@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from "next/link";
+import { useRouter } from 'next/router'
 import type { Breadcrumb } from "../../types";
 import layout from "../../styles/Layout.module.css";
 import { breadcrumbsNames } from '../../store/index'
-import { useRouter } from 'next/router'
+
 const Breadcrumbs: React.FC = () => {
   const router = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[] | undefined>(undefined);

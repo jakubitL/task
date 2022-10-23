@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import { useCharacters } from "../../actions";
-import styles from "../../styles/Layout.module.css";
-import type { Character } from "../../types";
-import { addReview } from '../../store/index';
-import type { RootState } from '../../store/index'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
+import type { NextPage } from "next";
+import type { Character } from "../../types";
+import type { RootState } from '../../store/index'
 import type { Review } from "../../types";
+import { useRouter } from "next/router";
+import { useCharacters } from "../../api/api";
+import styles from "../../styles/Layout.module.css";
+import { addReview } from '../../store/index';
 
 const Character: NextPage = () => {
   const router = useRouter();

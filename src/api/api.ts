@@ -1,44 +1,14 @@
-import { useState, useEffect } from "react";
-import type { Movie, Character } from "./types";
 import { useCallback } from 'react';
 import axios from 'axios';
 
-/**
- * TODO: dodaj typy
- */
  const api = axios.create({
   baseURL: 'https://swapi.dev/api',
 });
 
-async function fetchMethod(...args) {
-  const res = await fetch(...args);
-  return await res.json();
-}
-
 // docs: https://swapi.dev/
 const endpoint = "https://swapi.dev/api";
 
-const regex = /(\d+)\/$/;
-export const getUrlID = (link: string) => {
-  const match = link.match(regex);
-  return match && match[1];
-};
-
 export const useMovies = () => {
-  // const [response, setResponse] = useState<Movie[] | undefined>(undefined);
-
-  // useEffect(() => {
-  //   /**
-  //    * TODO: moze da się jakoś lepiej pobierać dane :)
-  //    */
-  //   fetchMethod<{ results: Movie[] }>(`${endpoint}/films/`).then(
-  //     ({ results }) => {
-  //       setResponse(results);
-  //     }
-  //   );
-  // }, []);
-
-  // return response;
 
   const getMovies =  useCallback(async () => {
     try {
@@ -61,9 +31,7 @@ return { getMovies, getMovieById}
 };
 
 export const useCharacters = () => {
-  /**
-   * TODO: ${endpoint}/people
-   */
+
    const getCharactes =  useCallback(async () => {
     //pętla while nie jest optymalna, niestety api nie pozwala pobrać wszystkie postacie za jednym razem aby potem móc wykorzystywać ze store
     try {

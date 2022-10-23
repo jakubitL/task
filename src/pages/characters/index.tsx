@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from "next";
-import type { RootState } from '../../store/index'
+import type { Character } from "../../types"
+import type { RootState, AppDispatch } from '../../store/index'
 import Link from "next/link";
 import styles from "../../styles/Layout.module.css";
-import { useCharacters, getUrlID } from "../../actions";
+import { useCharacters } from "../../api/api";
+import { getUrlID } from "../../helpers/helpers"
 import { useDispatch, useSelector } from 'react-redux'
 import { addCharacters } from '../../store/index';
 
 const Characters: NextPage = () => {
   const { getCharactes } = useCharacters();
-  const characters = useSelector((state: RootState) => state.characters);
-  const dispatch = useDispatch();
+  const characters: Character[] = useSelector((state: RootState) => state.characters);
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     (async () => {

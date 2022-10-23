@@ -4,13 +4,13 @@ import styles from "../styles/Layout.module.css";
 import { useDispatch, useSelector } from 'react-redux'
 import { addCharacters, addMovies } from '../store/index';
 import React, { useEffect } from 'react';
-import { useCharacters, useMovies } from "../actions";
-import type { RootState } from '../store/index'
+import { useCharacters, useMovies } from "../api/api";
+import type { RootState, AppDispatch } from '../store/index'
 
 const Home: NextPage = () => {
   const { getCharactes } = useCharacters();
   const { getMovies } = useMovies();
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const movies = useSelector((state: RootState) => state.movies);
   const characters = useSelector((state: RootState) => state.characters);
 

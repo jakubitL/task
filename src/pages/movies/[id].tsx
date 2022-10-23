@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from 'react-redux'
+import { useForm } from 'react-hook-form';
+import Link from "next/link";
 import type { NextPage } from "next";
 import type { RootState, AppDispatch } from '../../store/index'
-import { useRouter } from "next/router";
-import { useMovies, useCharacters, getUrlID } from "../../actions";
+import type { Movie, Review, Character} from "../../types";
+import { useMovies, useCharacters } from "../../api/api";
+import { getUrlID } from "../../helpers/helpers"
 import styles from "../../styles/Layout.module.css";
-import Link from "next/link";
-import type { Movie, Review } from "../../types";
 import { addReview, addCharacters } from '../../store/index';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux'
 
 const Movie: NextPage = () => {
   const router = useRouter();
@@ -22,14 +23,11 @@ const Movie: NextPage = () => {
     formState,
     formState: { errors, isSubmitSuccessful },
   } = useForm<Review>();
-  const characters = useSelector((state: RootState) => state.characters);
-  const dispatch = useDispatch();
-  const movieId = parseInt(router.query.id);
-  const reviews = useSelector((state: RootState) => state.reviews.filter(item => item.film_id === movieId));
+  const characters: Character[] = useSelector((state: RootState) => state.characters);
+  const dispatch: AppDispatch = useDispatch();
+  const movieId: number = parseInt(router.query.id);
+  const reviews: Review[] = useSelector((state: RootState) => state.reviews.filter(item => item.film_id === movieId));
 
-  /**
-   * TODO: zaimplementuj hook do pobierania filmu
-   */
    React.useEffect(() => {
     if (formState.isSubmitSuccessful) {
       reset();
@@ -75,32 +73,20 @@ const Movie: NextPage = () => {
               </Link>
             </li>
           );
-          /**
-           * TODO: dodaj listę postaci z linkami do strony o niej
-           */
         })}
       </ul>
 
       <h3>Recenzje</h3>
       <ul>
         {reviews && reviews.map((review, i) => {
-            /**
-             * TODO: fix key value
-             */
             return (
               <li key={i}>
                   {review.author_name} + {review.content} 
               </li>
             );
           })}
-        {/**
-         * TODO: dodaj listę recenzji dla zasobu, recenzje powinny być zapisane w stanie aplikacji
-         */}
       </ul>
       <form onSubmit={handleSubmit(handleAddReview)}>
-        {/**
-         * TODO: zaimplementuj formularz dodawania recenzji
-         */}
            <label>Autor:</label>
          <input {...register('author_name', { required: true })} type="text" name="author_name" id="author_name" />
 
