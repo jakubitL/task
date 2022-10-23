@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "../styles/Layout.module.css";
 import { useDispatch, useSelector } from 'react-redux'
 import { addCharacters, addMovies } from '../store/index';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useCharacters, useMovies } from "../actions";
 import type { RootState } from '../store/index'
 

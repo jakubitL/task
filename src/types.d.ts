@@ -1,9 +1,7 @@
-/**
- * TODO: uzupełnij brakujące typy
- */
-
 export type Breadcrumb = {
-  // TODO
+  href: string;
+  route: string;
+  title: string;
 };
 
 export type Review = {

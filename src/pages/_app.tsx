@@ -6,11 +6,12 @@ import Link from "next/link";
 import { useRouter } from 'next/router'
 import { store } from '../store/index';
 import { Provider } from 'react-redux';
-import {titleNames} from '../store/index'
+import { breadcrumbsNames } from '../store/index'
 function MyApp({ Component, pageProps }: AppProps) {
 const router = useRouter()
 const getTitleName = () => {
-  return titleNames.find(item => item.path === router.pathname)?.title
+  console.log(router);
+  return breadcrumbsNames.find(item => item.route === router.pathname)?.title
 }
 const onReturnClick = () => {
   if (router.pathname !== '/')
@@ -30,7 +31,7 @@ const onReturnClick = () => {
       {/**
        * TODO: powrót do poprzedniej strony jeśli nie jesteśmy aktualnie na stronie głównej
        */}
-      <span onClick={() => onReturnClick()}>Powrót</span>
+      <span style={{cursor: "pointer"}} onClick={() => onReturnClick()}>Powrót</span>
       </Provider>
     </>
   );

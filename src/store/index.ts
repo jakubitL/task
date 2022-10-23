@@ -1,25 +1,31 @@
 import { v4 as uuid } from 'uuid';
 import { createSlice, configureStore } from '@reduxjs/toolkit';
+import type { Breadcrumb } from "../types";
 
-export const titleNames = [
+export const breadcrumbsNames: Breadcrumb[] = [
   {
-    path: '/',
+    route: '/',
+    href: '',
     title: 'Strona główna'
   },
   {
-    path: '/movies',
+    route: '/movies',
+    href: '',
     title: 'Filmy'
   },
   {
-    path: '/characters',
+    route: '/characters',
+    href: '',
     title: 'Postacie'
   },
   {
-    path: '/characters/[id]',
+    route: '/characters/[id]',
+    href: '',
     title: 'Szczegóły postaci'
   },
   {
-    path: '/movies/[id]',
+    route: '/movies/[id]',
+    href: '',
     title: 'Szczegóły filmu'
   }
 ]
