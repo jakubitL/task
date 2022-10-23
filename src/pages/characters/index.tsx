@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import type { Character } from "../../types/types"
 import type { RootState, AppDispatch } from '../../store/index'
 import Link from "next/link";
-import styles from "../../styles/Layout.module.css";
+import styles from "./Characters.module.scss";
 import { useCharacters } from "../../api/api";
 import { getUrlID } from "../../helpers/helpers"
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,14 +25,14 @@ const Characters: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <h3>Postacie</h3>
-      <ul>
+      <h3 className={styles.header}>Postacie</h3>
+      <ul className={styles.listContainer}>
         {characters &&
           characters.map((character, i) => {
             return (
               <li key={i}>
                 <Link href={`/characters/${getUrlID(character.url)}`}>
-                  {character.name}
+                <button className={styles.listItem}>{character.name}</button>
                 </Link>
               </li>
             );

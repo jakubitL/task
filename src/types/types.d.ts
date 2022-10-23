@@ -23,6 +23,7 @@ export type Movie = {
 export type Character = {
   hair_color: ReactNode;
   name: string;
+  gender: string;
   height: number;
   mass: string;
   birth_year: string;

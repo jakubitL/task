@@ -5,8 +5,6 @@ import axios from 'axios';
   baseURL: 'https://swapi.dev/api',
 });
 
-// docs: https://swapi.dev/
-const endpoint = "https://swapi.dev/api";
 
 export const useMovies = () => {
 
@@ -62,10 +60,4 @@ const getCharacterById =  useCallback(async (id: Number) => {
 }, [])
 
 return { getCharactes, getCharacterById}
-};
-
-export const useCharacter = () => {
-  /**
-   * TODO: ${endpoint}/people/${id}
-   */
 };

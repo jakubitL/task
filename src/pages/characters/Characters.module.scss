@@ -1,5 +1,6 @@
 .container {
     padding: 0;
+    height: 100%;
 }
 
 .header {
@@ -16,17 +17,20 @@
 .listContainer {
     list-style-type: none;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     padding-left: 10%;
     padding-right: 10%;
 
 }
 
 .listItem {
-    margin-bottom: 10px;
+    margin: 20px;
 
     &:hover {
-        margin-bottom: 10px;
+        margin: 20px;
     }
 }
 

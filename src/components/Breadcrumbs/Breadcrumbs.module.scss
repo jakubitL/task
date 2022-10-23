@@ -2,9 +2,10 @@
     display: flex;
     flex-direction: row;
     list-style: none;
-    padding: 5px;
-    font-size: 18px;
-    border: 1px solid #508AA8;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #ffe91f;
+    color: white;
   }
   
   .breadcrumbs li::after {

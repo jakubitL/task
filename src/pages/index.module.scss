@@ -5,9 +5,14 @@
     display: flex;
     justify-content: space-around;
     list-style-type: none;
-    padding-right: 35%;
-    padding-left: 35%;
+    padding: 5% 35% 0 35%;
 }
 .buttons {
-    background-color: #DE8F6E;
+    background-color: #ffe91f;
+    font-size: 64px;
+    padding: 25px;
+    min-width: 300px;
+    &:hover {
+        background-color: #998f37;
+    }
 }
