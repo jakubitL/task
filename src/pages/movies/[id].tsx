@@ -66,9 +66,9 @@ const Movie: NextPage = () => {
         <h3 className={styles.header}>Film: {movie ? movie.title : ''}</h3>
         <p>{movie ? movie.opening_crawl : ''}</p>
         <ul>
-          {movie && movie.characters && movie.characters.map((character, idx) => {
+          {movie && movie.characters && movie.characters.map((character, id) => {
             return (
-              <li className={styles.titles} key={idx}>
+              <li className={styles.titles} key={id}>
                 <Link href={`/characters/${getUrlID(character)}`}>
                   {getCharacterName(character) ? getCharacterName(character) : ''}
                 </Link>
